@@ -42,6 +42,8 @@ FROM item_mast
 group by PRO_COM ;  
 
 --  write a SQL query to find the cheapest item(s). Return pro_name and, pro_price. Sample table: item_mast
+SELECT pro_name, pro_price 
+FROM item_mast 
+WHERE pro_price = (SELECT MIN(pro_price) FROM item_mast);
 
--- From the following table, write a SQL query to find the unique last name of all employees. Return emp_lname.  Sample table: emp_details
 

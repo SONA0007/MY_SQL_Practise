@@ -20,3 +20,28 @@ ORDER BY
   -- Orders the result set by 'winner' in ascending order.
   winner;
 
+--  From the following table, write a SQL query to calculate the average price for a manufacturer code of 16. Return avg.  
+SELECT AVG(pro_price)
+-- Specifies the table from which to retrieve the data (in this case, 'item_mast').
+FROM item_mast
+-- Filters the rows to only include those where the 'pro_com' column has the value 16.
+WHERE pro_com = 16;
+
+-- write a SQL query to find the items whose prices are higher than or equal to $250. Order the result by product price in descending, then product name in ascending. Return pro_name and pro_price.  Sample table: item_mast
+SELECT pro_name , pro_price
+FROM item_mast
+WHERE 
+pro_price >= 250
+order by 
+PRO_PRICE desc,
+PRO_NAME ;                       ;
+
+-- to calculate average price of the items for each company. Return average price and company code. Sample table: item_mast
+SELECT avg(pro_price) as avg, PRO_COM 
+FROM item_mast
+group by PRO_COM ;  
+
+--  write a SQL query to find the cheapest item(s). Return pro_name and, pro_price. Sample table: item_mast
+
+-- From the following table, write a SQL query to find the unique last name of all employees. Return emp_lname.  Sample table: emp_details
+

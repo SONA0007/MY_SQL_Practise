@@ -29,3 +29,9 @@ where
    (purch_amt BETWEEN 500 AND 4000)
 AND 
    purch_amt NOT IN (948.50, 1983.43); 
+
+-- Retrieve the details of the salespeople whose names begin with any letter between 'A' and 'L' (not inclusive). Return salesman_id, name, city, commission. 
+SELECT * FROM 
+SALESMAN 
+where
+   NAME BETWEEN 'A' AND 'L'; 

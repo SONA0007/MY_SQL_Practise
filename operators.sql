@@ -35,3 +35,41 @@ SELECT * FROM
 SALESMAN 
 where
    NAME BETWEEN 'A' AND 'L'; 
+
+-- find the details of those salespeople whose names begin with ‘N’ and the fourth character is 'l'. Rests may be any character. Return salesman_id, name, city, commission
+SELECT * FROM 
+salesman 
+where
+name LIKE 'N__l%'; 
+
+-- write a SQL query to find those rows where col1 contains the escape character underscore ( _ ). Return col1.
+-- Sample table: testtable
+-- col1
+-- --------------------------
+-- A001/DJ-402\44_/100/2015
+-- A001_\DJ-402\44_/100/2015
+-- A001_DJ-402-2014-2015
+-- A002_DJ-401-2014-2015
+
+SELECT * FROM testtable 
+where
+col1 LIKE '%_%'; 
+-- find those rows where col1 contains the string ( _/ ).
+SELECT * FROM testtable 
+where
+col1 not LIKE '%/%'; 
+
+-- find those rows where col1 does not contain the string ( _/ ). Return col1.
+SELECT * FROM testtable 
+where
+col1 NOT LIKE '%/_//%' escape '/' ;  
+
+-- find those rows where col1 contains the character percent ( % ).
+SELECT * FROM  testtable 
+where
+col1  LIKE '%/%%' escape '/' ; 
+
+-- write a SQL query to locate all customers with a grade value. 
+SELECT * FROM customer  
+where
+grade is null ; 

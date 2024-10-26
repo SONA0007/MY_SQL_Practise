@@ -39,3 +39,22 @@ SELECT salesman_id,MAX(purch_amt)
 FROM orders
 where ord_date ='2012-08-17'
 group by salesman_id, ord_date ;
+
+-- write a SQL query to find the highest order (purchase) amount by each customer on a particular order date. Filter the result by highest order (purchase) amount above 2000.00. 
+-- Return customer id, order date and maximum purchase amount. Sample table: orders
+SELECT customer_id, ord_date,MAX(purch_amt) 
+FROM orders
+group by customer_id, ord_date
+HAVING MAX(purch_amt) > 2000.00;
+
+--  write a SQL query to count the number of salespeople in a city. Return number of salespeople.Sample table: salesman
+
+SELECT count(*) from
+salesman where
+city is not null;
+
+-- write a SQL query to count the number of employees in each department. Return department code and number of employees.Sample table: emp_details
+
+SELECT EMP_DEPT, count(EMP_IDNO)  from
+emp_details
+group by EMP_DEPT  ;

@@ -42,4 +42,23 @@ FROM  customer c, salesman s
 WHERE
     s.commission between 0.12 and 0.14
 and c.salesman_id = s.salesman_id;
--- 
+-- write a SQL query to find all orders executed by the salesperson and ordered by the customer whose grade is greater than or equal to 200.
+-- Compute purch_amt*commission as “Commission”. Return customer name, commission as “Commission%” and Commission
+
+SELECT o.ord_no, c.cust_name as "Customer",  s.commission, (o.purch_amt*s.commission) as "Commission"
+FROM  customer c, salesman s, orders o
+WHERE
+     c.grade >=200 
+and o.salesman_id = s.salesman_id
+and o.customer_id = c.customer_id
+and c.salesman_id = s.salesman_id;
+
+-- write a SQL query to find those customers who placed orders on October 5, 2012.
+-- Return customer_id, cust_name, city, grade, salesman_id, ord_no, purch_amt, ord_date, customer_id and salesman_id
+
+SELECT *
+FROM  customer c, orders o
+WHERE
+      o.customer_id = c.customer_id
+ and  o.ord_date = '2012-10-05';
+--  make sure to check date format

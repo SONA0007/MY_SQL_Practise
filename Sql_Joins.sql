@@ -35,4 +35,4 @@ INNER JOIN customer c ON
 INNER JOIN salesman s ON 
      s.salesman_id = o.salesman_id  ;
 
-
+-- 

@@ -35,4 +35,15 @@ INNER JOIN customer c ON
 INNER JOIN salesman s ON 
      s.salesman_id = o.salesman_id  ;
 
--- 
+-- Write a SQL statement to join the tables salesman, customer and orders so that the same column of each table appears 
+-- once and only the relational rows are returned. 
+SELECT * FROM orders 
+     NATURAL JOIN customer 
+     NATURAL JOIN salesman;
+
+-- write a SQL query to display the customer name, customer city, grade, salesman, salesman city. The results should be sorted by ascending customer_id.  
+SELECT c.cust_name, c.grade, c.city as "Cust city", s.name, s.city as "Saleman City"    
+FROM  customer c 
+Left JOIN salesman s ON 
+     s.salesman_id = c.salesman_id 
+ORDER BY c.customer_id asc;

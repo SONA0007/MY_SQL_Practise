@@ -93,3 +93,18 @@ c.salesman_id = s.salesman_id ;
 -- This query will select all the rows from the salesman table and any matching rows from the customer table and returning the results in the order of salesman_id. 
 -- If there is no match, it will return NULL for the non-matching columns of customer table.
 
+-- write a  SQL query to list all salespersons along with customer name, city, grade, order number, date, and amount. Condition for selecting 
+-- list of salesmen : 1. Salesmen who works for one or more customer or, 2. Salesmen who not yet join under any customer
+-- , Condition for selecting list of customer : 3. placed one or more orders, or 4. no order placed to their salesman.
+
+SELECT C.cust_name , C.city, C.grade, o.ord_no, o.ord_date, o.purch_amt, s.name, s.commission
+FROM orders o
+Right JOIN customer C ON 
+o.customer_id = c.customer_id 
+right JOIN salesman s ON 
+o.salesman_id = s.salesman_id ;
+-- First, it performs a right outer join on the customer table and the salesman table using the 'salesman_id' column.
+-- Then it performs another right outer join on the result of the first join and the orders table using the 'customer_id' column.
+-- It is then selecting the 'cust_name', 'city', 'grade', 'name' as 'Salesman', 'ord_no', 'ord_date', and 'purch_amt' columns from the three tables.
+-- This query will select all the rows from orders table and any matching rows from customer table and salesman table. 
+-- If there is no match, it will return NULL for the non-matching columns of customer table and salesman table.

@@ -70,4 +70,18 @@ ORDER BY o.ord_date;
 -- If no match is found on the right table, it will return NULL for the right table's fields.
 
 
--- 
+--  to generate a report with customer name, city, order number, order date, order amount, salesperson name, and commission
+-- to determine if any of the existing customers have not placed orders or if they have placed orders through their salesman or by themselves.
+-- Selecting specific columns and renaming one column for clarity
+SELECT a.cust_name, a.city, b.ord_no,
+       b.ord_date, b.purch_amt AS "Order Amount", 
+       c.name, c.commission 
+-- Specifying the tables to retrieve data from ('customer' as 'a', 'orders' as 'b', and 'salesman' as 'c')
+FROM customer a 
+-- Performing a left outer join based on the customer_id, including unmatched rows from 'customer'
+LEFT OUTER JOIN orders b 
+ON a.customer_id = b.customer_id 
+-- Performing another left outer join with the result of the previous join and the 'salesman' table based on salesman_id
+LEFT OUTER JOIN salesman c 
+ON c.salesman_id = b.salesman_id;
+

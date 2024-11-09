@@ -47,3 +47,27 @@ FROM  customer c
 Left JOIN salesman s ON 
      s.salesman_id = c.salesman_id 
 ORDER BY c.customer_id asc;
+
+-- write a SQL query to find those customers with a grade less than 300. Return cust_name, customer city, grade, Salesman, salesmancity.
+-- The result should be ordered by ascending customer_id. 
+SELECT C.cust_name , C.city, C.grade, S.name, S.city
+FROM customer C 
+LEFT JOIN salesman S ON 
+C.salesman_id = S.salesman_id
+WHERE 
+C.GRADE < 300 
+ORDER BY C.customer_id;
+
+--  Write a SQL statement to make a report with customer name, city, order number, order date, 
+-- and order amount in ascending order according to the order date to determinewhether any of the existing customers have placed an order or not.
+
+SELECT C.cust_name , C.city, o.ord_no, o.ord_date, o.purch_amt
+FROM orders o
+LEFT JOIN customer C ON 
+o.customer_id = c.customer_id 
+ORDER BY o.ord_date;
+-- t is using a LEFT OUTER JOIN which will retrieve all records from the left table and the matching records from the right table. 
+-- If no match is found on the right table, it will return NULL for the right table's fields.
+
+
+-- 

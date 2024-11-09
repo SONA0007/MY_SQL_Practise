@@ -83,5 +83,13 @@ o.customer_id = c.customer_id
 LEFT JOIN salesman s ON 
 o.salesman_id = s.salesman_id ;
 
+--  Write a SQL statement to generate a list in ascending order of salespersons 
+-- who work either for one or more customers or have not yet joined any of the customers.
 
+SELECT  s.name, c.cust_name
+FROM customer C 
+Right JOIN salesman s ON 
+c.salesman_id = s.salesman_id ;
+-- This query will select all the rows from the salesman table and any matching rows from the customer table and returning the results in the order of salesman_id. 
+-- If there is no match, it will return NULL for the non-matching columns of customer table.
 

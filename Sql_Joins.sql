@@ -150,5 +150,39 @@ WHERE c.city is not null
      and c.city <> s.city
      and c.grade is not null;
 
--- 
+-- From the following tables write a SQL query to calculate the average price of items of each company. Return average value and company name.
+SELECT AVG(pro_price), c.com_name 
+FROM 
+item_mast i
+ INNER JOIN company_mast c
+ ON i.pro_com = C.com_id
+GROUP BY c.com_name;
 
+--  to calculate and find the average price of items of each company higher than or equal to Rs. 350. Return average value and company name.
+SELECT AVG(i.pro_price), c.com_name 
+FROM 
+item_mast i
+ INNER JOIN company_mast c
+ ON i.pro_com = C.com_id
+GROUP BY c.com_name
+having AVG(i.pro_price) >= 350;
+
+-- From the following tables write a SQL query to find the most expensive product of each company. Return pro_name, pro_price and com_name.
+
+SELECT A.pro_name, A.pro_price, F.com_name 
+FROM item_mast A INNER JOIN 
+  company_mast F 
+  ON A.pro_com = F.com_id 
+  AND 
+  A.pro_price = ( 
+  SELECT 
+  MAX(A.pro_price) FROM item_mast A 
+  WHERE A.pro_com = F.com_id 
+);
+
+--  From the following tables write a SQL query to find the names of departments where more than two employees are employed. Return dpt_name.
+SELECT emp_department.dpt_name 
+FROM emp_details 
+INNER JOIN emp_department 
+ ON emp_dept =dpt_code 
+GROUP BY emp_department.dpt_name HAVING COUNT(*) > 2;

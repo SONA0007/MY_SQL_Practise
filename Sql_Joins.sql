@@ -134,4 +134,21 @@ FROM customer c
 Left outer JOIN orders o 
  ON c.customer_id = o.customer_id ;
 
+-- Write a SQL query to combine each row of the salesman table with each row of the customer table.
+SELECT * FROM salesman a CROSS JOIN customer b;
+
+-- Write a  SQL statement to create a Cartesian product between salesperson and customer,
+-- i.e. each salesperson will appear for all customers and vice versa for that salesperson who belongs to that city.
+SELECT * FROM salesman a 
+     CROSS JOIN customer b WHERE a.city IS NOT NULL;
+
+-- Write a SQL statement to make a Cartesian product between salesman and customer i.e. each salesman will appear for all customers and vice versa for those salesmen
+-- who must belong to a city which is not the same as his customer and the customers should have their own grade.
+SELECT * FROM salesman s
+     CROSS JOIN customer c
+WHERE c.city is not null
+     and c.city <> s.city
+     and c.grade is not null;
+
 -- 
+

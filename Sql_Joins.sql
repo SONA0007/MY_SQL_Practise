@@ -108,3 +108,30 @@ o.salesman_id = s.salesman_id ;
 -- It is then selecting the 'cust_name', 'city', 'grade', 'name' as 'Salesman', 'ord_no', 'ord_date', and 'purch_amt' columns from the three tables.
 -- This query will select all the rows from orders table and any matching rows from customer table and salesman table. 
 -- If there is no match, it will return NULL for the non-matching columns of customer table and salesman table.
+
+
+-- Write a  SQL statement to make a list for the salesmen who either work for one or more customers or yet to join any of the customer.
+-- The customer, may have placed, either one or more orders on or above order amount 2000 and must have a grade,
+-- or he may not have placed any order to the associated supplier.
+
+SELECT c.cust_name , c.city, c.grade, o.ord_no, o.ord_date, o.purch_amt, s.name
+
+FROM customer c
+
+Right outer JOIN salesman s
+ ON s.salesman_id = c.salesman_id
+
+Left outer JOIN orders o 
+ ON c.customer_id = o.customer_id 
+
+where o.purch_amt >= 2000
+And c.grade is not null;
+
+--  Write a SQL statement to generate a report with the customer name, city, order no. order date, purchase amount for only those customers on the list
+-- who must have a grade and placed one or more orders or which order(s) have been placed by the customer who neither is on the list nor has a grade.
+SELECT c.cust_name , c.city, c.grade, o.ord_no, o.ord_date, o.purch_amt
+FROM customer c
+Left outer JOIN orders o 
+ ON c.customer_id = o.customer_id ;
+
+-- 

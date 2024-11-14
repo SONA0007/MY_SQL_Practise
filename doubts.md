@@ -1,4 +1,5 @@
 1.how the concept of subquery work, where should we use it ? how to use it ?
+ 
   ans:      1. How Subqueries Work
             A subquery is often executed first, and its result is then passed to the outer query.
             Subqueries can be used in various SQL clauses like SELECT, FROM, WHERE, and HAVING, and they are usually enclosed in parentheses.
@@ -18,6 +19,7 @@
             Non-correlated subquery: Operates independently of the outer query
 
 2.how to decide whether to use join or subquery ?
+
 ans:        Use a JOIN when:
             You need to retrieve related columns from multiple tables in a single result set.
             You are looking to combine rows from two or more tables based on a common column.

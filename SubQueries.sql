@@ -48,9 +48,37 @@ WHERE salesman_id =
     from customer 
     where city = 'Paris');
 
--- Write a query to display all the customers whose ID is 2001 below the salesperson ID of Mc Lyon.
+-- 7. Write a query to display all the customers whose ID is 2001 below the salesperson ID of Mc Lyon.
 SELECT * FROM customer  
 WHERE  customer_id =  
    (select salesman_id - 2001
     from salesman 
     where name = 'Mc Lyon');
+
+  --8 write a  SQL query to count the number of customers with grades above the average in New York City. Return grade and count. 
+SELECT grade, COUNT(*)
+FROM customer
+GROUP BY grade
+HAVING grade >
+    (SELECT AVG(grade)
+     FROM customer
+     WHERE city = 'New York');
+
+-- 9.write a  SQL query to find those salespeople who earned the maximum commission. Return ord_no, purch_amt, ord_date, and salesman_id.
+SELECT *
+FROM orders 
+WHERE salesman_id IN
+(select salesman_id FROM salesman 
+ where commission = 
+       (SELECT MAX(commission)
+        FROM salesman ) );
+-- NESTED QUERY
+
+--10.  to find the customers who placed orders on 17th August 2012. Return ord_no, purch_amt, ord_date, customer_id, salesman_id and cust_name.
+SELECT O.*, C.cust_name
+FROM orders O, customer C 
+where
+    O.customer_id = C.customer_id
+and O.ord_date = '2012-08-17' ;
+  
+  -- 

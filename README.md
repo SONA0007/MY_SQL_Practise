@@ -1,5 +1,8 @@
 This repository, "MY_SQL_Practise", is a collection of SQL queries and scripts that cover various aspects of SQL, including aggregate functions, subqueries, joins, and basic SQL operations. The project aims to provide a comprehensive set of resources for practicing and mastering SQL skills, which can be useful for coding interviews.
 
+### Why SQL?
+SQL (Structured Query Language) is an essential skill for data professionals, enabling you to interact with databases, manipulate data, and derive insights. Mastering SQL can significantly enhance your career prospects in fields such as data analysis, data science, and software development.
+
 ## Main Function Points
 - Provides a collection of SQL scripts covering different SQL concepts and operations
 - Includes scripts for practicing aggregate functions, subqueries, joins, and basic SQL operations

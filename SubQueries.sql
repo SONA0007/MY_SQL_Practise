@@ -88,7 +88,7 @@ where (SELECT COUNT(*) FROM customer
        where 
        salesman_id = s.salesman_id) > 1
 
--- query to find those orders, which are higher than the average amount of the orders. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+--13 query to find those orders, which are higher than the average amount of the orders. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
 SELECT * from orders o1
 where o1.purch_amt > 
   (select AVG(purch_amt) from orders o2 
@@ -98,7 +98,7 @@ where o1.purch_amt >
 SELECT * from orders o1
 where purch_amt >= (select AVG(purch_amt) from orders o2where o1.customer_id = o2.customer_id)
 
---  find the sums of the amounts from the orders table, grouped by date, and eliminate all dates where the sum was not at least 1000.00 above the maximum order amount for that date.
+-- 14 find the sums of the amounts from the orders table, grouped by date, and eliminate all dates where the sum was not at least 1000.00 above the maximum order amount for that date.
 SELECT ord_date, sum(purch_amt)
 from orders a
 GROUP BY ord_date
@@ -106,3 +106,42 @@ HAVING SUM(purch_amt) >
   (  select MAX(purch_amt)+1000 
     from orders b
     WHERE a.ord_date = b.ord_date);
+-- generally when we use group by clause , what we write in where , we it using HAVING clause
+
+
+-- 15 A query to extract all data from the customer table if and only if one or more of the customers in the customer table are located in London. Sample table : Customer
+SELECT *
+FROM customer
+WHERE city IN (
+    SELECT city
+    FROM customer
+    WHERE city = 'London'
+);
+-- OR 
+SELECT *
+FROM customer
+WHERE EXISTS (
+    SELECT CITY
+    FROM customer
+    WHERE city = 'London'
+);
+
+--16 SQL query to find salespeople who deal with multiple customers. Return salesman_id, name, city and commission.
+-- using JOIN
+SELECT S.salesman_id, S.name, S.city, S.commission
+FROM Salesman S
+JOIN Customer C ON S.salesman_id = C.salesman_id
+GROUP BY S.salesman_id, S.name, S.city, S.commission
+HAVING COUNT(DISTINCT C.customer_id) > 1;
+-- OR
+-- using subquery
+SELECT S.salesman_id, S.name, S.city, S.commission
+FROM Salesman S
+WHERE S.salesman_id IN (
+    SELECT salesman_id
+    FROM Customer
+    GROUP BY salesman_id
+    HAVING COUNT(DISTINCT customer_id) > 1
+);
+
+-- 17

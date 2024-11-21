@@ -81,4 +81,28 @@ where
     O.customer_id = C.customer_id
 and O.ord_date = '2012-08-17' ;
   
-  -- 
+-- 11. write a SQL query to find salespeople who had more than one customer. Return salesman_id and name.
+SELECT s.salesman_id, s.name 
+from salesman s 
+where (SELECT COUNT(*) FROM customer 
+       where 
+       salesman_id = s.salesman_id) > 1
+
+-- query to find those orders, which are higher than the average amount of the orders. Return ord_no, purch_amt, ord_date, customer_id and salesman_id.
+SELECT * from orders o1
+where o1.purch_amt > 
+  (select AVG(purch_amt) from orders o2 
+  where o1.customer_id = o2.customer_id)
+
+--  find those orders that are equal or higher than the average amount of the orders.
+SELECT * from orders o1
+where purch_amt >= (select AVG(purch_amt) from orders o2where o1.customer_id = o2.customer_id)
+
+--  find the sums of the amounts from the orders table, grouped by date, and eliminate all dates where the sum was not at least 1000.00 above the maximum order amount for that date.
+SELECT ord_date, sum(purch_amt)
+from orders a
+GROUP BY ord_date
+HAVING SUM(purch_amt) > 
+  (  select MAX(purch_amt)+1000 
+    from orders b
+    WHERE a.ord_date = b.ord_date);

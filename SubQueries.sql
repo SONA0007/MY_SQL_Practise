@@ -144,4 +144,4 @@ WHERE S.salesman_id IN (
     HAVING COUNT(DISTINCT customer_id) > 1
 );
 
--- 17
+-- 17 A SQL query to find salespeople who deal with a single customer. Return salesman_id, name, city and commission
